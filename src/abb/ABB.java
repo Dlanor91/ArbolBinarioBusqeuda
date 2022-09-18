@@ -37,24 +37,24 @@ public class ABB {
     }
 
     //In Order
-    public void listarAscendente(){
+    public void listarAscendente() {
         listarAscendente(this.raiz);
     }
 
     private void listarAscendente(Nodo nodo) {
-        if(nodo != null){// se puede dejar vacio  si nodo ==null
+        if (nodo != null) {// se puede dejar vacio  si nodo ==null
             listarAscendente(nodo.getIzq());
             System.out.println(nodo.getDato());
             listarAscendente(nodo.getDer());
         }
     }
 
-    public void listarDescendente(){
+    public void listarDescendente() {
         listarDescendente(this.raiz);
     }
 
     private void listarDescendente(Nodo nodo) {
-        if(nodo != null){// se puede dejar vacio  si nodo ==null
+        if (nodo != null) {// se puede dejar vacio  si nodo ==null
 
             listarDescendente(nodo.getDer());
             System.out.println(nodo.getDato());
@@ -63,12 +63,12 @@ public class ABB {
     }
 
     //Post Orden
-    public void listarPostOrden(){
+    public void listarPostOrden() {
         listarPostOrden(this.raiz);
     }
 
     private void listarPostOrden(Nodo nodo) {
-        if(nodo != null){// se puede dejar vacio  si nodo ==null
+        if (nodo != null) {// se puede dejar vacio  si nodo ==null
 
             listarPostOrden(nodo.getDer());
             System.out.println(nodo.getDato());
@@ -76,129 +76,149 @@ public class ABB {
         }
     }
 
-    public boolean pertenece(int x){
-        return pertenece(x,raiz);
+    public boolean pertenece(int x) {
+        return pertenece(x, raiz);
     }
 
     private boolean pertenece(int x, Nodo nodo) {
-        if(nodo == null){
+        if (nodo == null) {
             return false;
-        }else if(x == nodo.getDato()){
+        } else if (x == nodo.getDato()) {
             return true;
-        }else{
-            if(x < nodo.getDato()){
-                return pertenece(x,nodo.getIzq());
-            }else{
-                return pertenece(x,nodo.getDer());
+        } else {
+            if (x < nodo.getDato()) {
+                return pertenece(x, nodo.getIzq());
+            } else {
+                return pertenece(x, nodo.getDer());
             }
         }
     }
 
-    public int borrarMinimo(){
-        return borrarMinimo(raiz,0,null);
+    public int borrarMinimo() {
+        return borrarMinimo(raiz, 0, null);
     }
 
-    private int borrarMinimo(Nodo nodo,int minimo,Nodo ant)
-    {
-       if(nodo != null) {
-           if (nodo.getIzq() != null) {
-               ant = nodo;
-               int min = nodo.getDato();
-               minimo = min;
-               int minIzq = borrarMinimo(nodo.getIzq(), min, ant);
-               return minIzq;
-           } else {
-               if (ant.getDer() != null) {
-                   ant.setIzq(nodo.getDer());
-                   return nodo.getDato();
-               } else {
-                   ant.setIzq(null);
-                   return nodo.getDato();
-               }
-           }
-       }else{
-           return -1;
-       }
+    private int borrarMinimo(Nodo nodo, int minimo, Nodo ant) {
+        if (nodo != null) {
+            if (nodo.getIzq() != null) {
+                ant = nodo;
+                int min = nodo.getDato();
+                minimo = min;
+                int minIzq = borrarMinimo(nodo.getIzq(), min, ant);
+                return minIzq;
+            } else {
+                if (ant.getDer() != null) {
+                    ant.setIzq(nodo.getDer());
+                    return nodo.getDato();
+                } else {
+                    ant.setIzq(null);
+                    return nodo.getDato();
+                }
+            }
+        } else {
+            return -1;
+        }
     }
 
     /* Ejercicio 6 */
     /*Desarrolle un algoritmo que, recibiendo un valor entero k, retorne la cantidad de elementos que son mayores a k.*/
-    public int cantidadMayores(int k){
-        return cantidadMayores(k,raiz);
+    public int cantidadMayores(int k) {
+        return cantidadMayores(k, raiz);
     }
 
-    private int cantidadMayores(int k,Nodo nodo) {
+    private int cantidadMayores(int k, Nodo nodo) {
 
-        if(nodo!=null){
-           if(k< nodo.getDato()){
-                int derCant = 1+cantidadMayores(k,nodo.getDer());
-                int izqCant = cantidadMayores(k,nodo.getIzq());
-                return derCant+izqCant;
-           }else{
-               return cantidadMayores(k,nodo.getDer());
-           }
-        }else{
+        if (nodo != null) {
+            if (k < nodo.getDato()) {
+                int derCant = 1 + cantidadMayores(k, nodo.getDer());
+                int izqCant = cantidadMayores(k, nodo.getIzq());
+                return derCant + izqCant;
+            } else {
+                return cantidadMayores(k, nodo.getDer());
+            }
+        } else {
             return 0;
         }
     }
 
     /*Desarrolle un algoritmo que retorne una lista con sus elementos ordenados de forma ascendente.*/
-    public Lista<Integer> elementosOrdenadosAsc(){
+    public Lista<Integer> elementosOrdenadosAsc() {
         Lista<Integer> lista = new Lista<>();
-        elementosOrdenadosAsc(raiz,lista);
+        elementosOrdenadosAsc(raiz, lista);
         return lista;
     }
 
     private void elementosOrdenadosAsc(Nodo nodo, Lista<Integer> lista) {
 
-        if(nodo!=null){
-            elementosOrdenadosAsc(nodo.getIzq(),lista);
+        if (nodo != null) {
+            elementosOrdenadosAsc(nodo.getIzq(), lista);
             lista.agregarAlFinal(nodo.getDato());
-            elementosOrdenadosAsc(nodo.getDer(),lista);
+            elementosOrdenadosAsc(nodo.getDer(), lista);
         }
 
     }
 
     /*Desarrolle un algoritmo que, recibiendo un valor entero k, retorne una lista con los elementos que son mayores a k.*/
-    public Lista<Integer> mostrarMayores(int k){
+    public Lista<Integer> mostrarMayores(int k) {
         Lista<Integer> lista = new Lista<>();
-        mostrarMayores(k,raiz,lista);
+        mostrarMayores(k, raiz, lista);
         return lista;
     }
 
-    private void mostrarMayores(int k,Nodo nodo,Lista<Integer> lista) {
+    private void mostrarMayores(int k, Nodo nodo, Lista<Integer> lista) {
 
-        if(nodo!=null){
-            if(k< nodo.getDato()){
-                mostrarMayores(k,nodo.getIzq(),lista);
+        if (nodo != null) {
+            if (k < nodo.getDato()) {
+                mostrarMayores(k, nodo.getIzq(), lista);
                 lista.agregarAlFinal(nodo.getDato());
-                mostrarMayores(k,nodo.getDer(),lista);
+                mostrarMayores(k, nodo.getDer(), lista);
 
-            }else{
-                 mostrarMayores(k,nodo.getDer(),lista);
+            } else {
+                mostrarMayores(k, nodo.getDer(), lista);
             }
         }
     }
 
-    public int mostrarNivel(int k){
+    public int mostrarNivel(int k) {
         int nivel = 0;
-        return mostrarNivel(k,raiz,nivel);
+        return mostrarNivel(k, raiz, nivel);
     }
 
     private int mostrarNivel(int k, Nodo nodo, int nivel) {
-        if(nodo != null){
-            if(k==nodo.getDato()){
+        if (nodo != null) {
+            if (k == nodo.getDato()) {
                 return nivel;
-            }else{
+            } else {
                 nivel++;
-                if(k> nodo.getDato()){
-                    return mostrarNivel(k,nodo.getDer(),nivel);
-                }else{
-                    return mostrarNivel(k,nodo.getIzq(),nivel);
+                if (k > nodo.getDato()) {
+                    return mostrarNivel(k, nodo.getDer(), nivel);
+                } else {
+                    return mostrarNivel(k, nodo.getIzq(), nivel);
                 }
             }
-        }else{
+        } else {
             return -1;
+        }
+    }
+
+    public int cantidad(int menor, int mayor) {
+        int cantidad = 0;
+        return cantidad(raiz, menor, mayor, cantidad);
+    }
+
+    public int cantidad(Nodo nodo, int menor, int mayor, int cantidad) {
+        if (nodo == null) {
+            return 0;
+        } else {
+            if (nodo.getDato() >= menor && nodo.getDato() <= mayor) {
+                int izqNodoCant = 1 + cantidad(nodo.getIzq(), menor, mayor, cantidad);
+                int derNodoCant = cantidad(nodo.getDer(), menor, mayor, cantidad);
+                return izqNodoCant + derNodoCant;
+            } else if (nodo.getDato() <menor) {
+                return cantidad(nodo.getDer(), menor, mayor, cantidad);
+            } else {
+                return cantidad(nodo.getIzq(), menor, mayor, cantidad);
+            }
         }
     }
 
