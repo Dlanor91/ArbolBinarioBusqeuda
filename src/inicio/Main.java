@@ -21,10 +21,10 @@ public class Main {
         System.out.println("Pertenece 8 false: "+abb.pertenece(8));
         System.out.println("Pertenece 10 false: "+abb.pertenece(10));
         System.out.println("Pertenece 3 true: "+abb.pertenece(3));
-        //System.out.println("Valor Eliminado 1 devuelve 1: "+abb.borrarMinimo());
-        //ystem.out.println("Pertenece 1 true: "+abb.pertenece(1));
-        //System.out.println("Valor Eliminado 2 devuelve 2: "+abb.borrarMinimo());
-        //System.out.println("Pertenece 2 true: "+abb.pertenece(2));
+        System.out.println("Valor Eliminado 1 devuelve 1: "+abb.borrarMinimo());
+        System.out.println("Pertenece 1 true: "+abb.pertenece(1));
+        System.out.println("Valor Eliminado 2 devuelve 2: "+abb.borrarMinimo());
+        System.out.println("Pertenece 2 true: "+abb.pertenece(2));
         System.out.println("---Ejercicio 6--- ");
         System.out.println("Cantidad de Mayores que 4 son 3: "+abb.cantidadMayores(4));
         System.out.println("Cantidad de Mayores que 3 son 4: "+abb.cantidadMayores(3));
@@ -37,8 +37,12 @@ public class Main {
         System.out.println("Buscar el nivel del 2 seria el 1: "+ abb.mostrarNivel(2));
         System.out.println("Buscar el nivel del 12 seria el -1: "+ abb.mostrarNivel(12));
 
-        System.out.println("Buscar la cantidad entre 2  y 5 debe dar 4: "+ abb.cantidad(2,5));
+        System.out.println("Buscar la cantidad entre 2 y 5 debe dar 4: "+ abb.cantidad(2,5));
         System.out.println("Buscar la cantidad entre 4 y 6 debe dar 3: "+ abb.cantidad(4,6));
+
+        System.out.println("Buscar la cantidad entre 2 y 5 VER2 debe dar 4: "+ abb.cantidadV2(2,5));
+        System.out.println("Buscar la cantidad entre 4 y 6 VER2 debe dar 3: "+ abb.cantidadV2(4,6));
+
     }
 
 }
