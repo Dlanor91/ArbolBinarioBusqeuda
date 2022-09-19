@@ -202,24 +202,56 @@ public class ABB {
     }
 
     public int cantidad(int menor, int mayor) {
-        int cantidad = 0;
-        return cantidad(raiz, menor, mayor, cantidad);
+        return cantidad(raiz, menor, mayor);
     }
 
-    public int cantidad(Nodo nodo, int menor, int mayor, int cantidad) {
+    public int cantidad(Nodo nodo, int menor, int mayor) {
         if (nodo == null) {
             return 0;
         } else {
             if (nodo.getDato() >= menor && nodo.getDato() <= mayor) {
-                int izqNodoCant = 1 + cantidad(nodo.getIzq(), menor, mayor, cantidad);
-                int derNodoCant = cantidad(nodo.getDer(), menor, mayor, cantidad);
+                int izqNodoCant = 1 + cantidad(nodo.getIzq(), menor, mayor);
+                int derNodoCant = cantidad(nodo.getDer(), menor, mayor);
                 return izqNodoCant + derNodoCant;
             } else if (nodo.getDato() <menor) {
-                return cantidad(nodo.getDer(), menor, mayor, cantidad);
+                return cantidad(nodo.getDer(), menor, mayor);
             } else {
-                return cantidad(nodo.getIzq(), menor, mayor, cantidad);
+                return cantidad(nodo.getIzq(), menor, mayor);
             }
         }
     }
+
+    public int cantidadV2(int menor, int mayor) {
+        return cantidad(raiz, menor, mayor, 0);
+    }
+    public int cantidad(Nodo nodo, int min, int max, int cant) {
+
+        if (nodo != null) {
+
+            int cantI = 0;
+            int cantD = 0;
+
+            if (nodo.getDato() > min) {
+                cantI = cantidad(nodo.getIzq(), min, max, cant);
+            }
+
+            if(nodo.getDato() < max){
+                cantD = cantidad(nodo.getDer(), min, max, cant);
+            }
+
+            cant = cantD + cantI;
+
+            if (nodo.getDato() >= min && nodo.getDato() <= max) {
+                cant++;
+            }
+            return cant;
+
+        } else {
+            return 0;
+        }
+
+    }
+
+
 
 }
